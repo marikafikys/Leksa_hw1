@@ -1,0 +1,85 @@
+body {
+	display: flex;
+	justify-content: space-around;
+}
+
+.popup {
+	width: 300px;
+	height: 300px;
+	position: fixed; /* static, relative, absolute, для fixed родитель viewport */
+	left: calc(50vw - 100px);
+	top: calc(50vh - 100px);
+	box-sizing: border-box; /* border включается */
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px 0 #0004, 0 0 15px #0004; /*inset в начале - внутренняя тень. Параметры: сдвиг по х, сдвиг по у, уровень размытия (важный параметр для тени), ???, цвет (#0002 - черный и 20% прозрачности) */
+	/* overflow: hidden; ребенок не вылезает за родителя */
+	padding: 15px;
+	display: none; /* элемент не показывается */
+	background-color:rgb(250, 244, 158);
+}
+
+.popup_active { /*это модификатор - располагается под своим блоком */
+	display: block; /* Блочные элементы располагаются один над другим, вертикально (если нет особых свойств позиционирования, например float). Блок стремится расшириться на всю доступную ширину. Можно указать ширину и высоту явно. */
+}
+
+.darkBackground {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	display: none;
+}
+
+.darkBackground_active {
+	background-color: #0005;
+	display: block;
+ }
+
+.popup__content {
+	width: 100%;
+	height: 100%; /* если в .popup будет min-height, то не сработают проценты */
+	background-color: rgb(250, 244, 158);
+}
+
+.popup__close {
+	width: 30px;
+	height: 30px;
+	background: white;
+	border-radius: 50%; /* % для идеального круга */
+	position: absolute; /* Элемент расположен относительно его ближайшего относительно позиционированного предка, если таковой имеется */
+	top: -10px;
+	right: -10px;
+	cursor: pointer; /* курсор меняется на палец */
+	box-shadow: 0 0 5px 0 #0004, 0 0 15px #0004;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.popup__close::before, .popup__close::after { /* общие характеристики */
+	content: ""; /* обязателен для псевдоэлемента */
+	display: block; /* Блочные элементы располагаются один над другим, вертикально (если нет особых свойств позиционирования, например float). Блок стремится расшириться на всю доступную ширину. Можно указать ширину и высоту явно. */
+	width: 4px;
+	height: 20px;
+	background-color: rgb(241, 85, 111);
+	position: absolute; /* Элемент расположен относительно его ближайшего относительно позиционированного предка, если таковой имеется */
+	border-radius: 2px; /* лучше здесь задавать в пикселях */
+}
+
+.popup__close::before { /* частные характеристики */
+	transform: rotate(45deg);
+}
+
+.popup__close::after { /* частные характеристики */
+	transform: rotate(-45deg);
+}
+
+.mini__item {
+	width: 200px;
+	height: 200px;
+	border: 1px dotted;
+	margin: 10px;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 70%;
+}
